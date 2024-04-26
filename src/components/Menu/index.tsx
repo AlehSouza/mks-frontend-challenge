@@ -1,5 +1,6 @@
 'use client'
 
+import { useBag } from "@/contexts/BagContext"
 import {
     Box,
     Flex,
@@ -83,12 +84,12 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
             display={'block'}
             p={2}
             rounded={'md'}
-            _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+            _hover={{ bg: useColorModeValue('green.50', 'gray.900') }}>
             <Stack direction={'row'} align={'center'}>
                 <Box>
                     <Text
                         transition={'all .3s ease'}
-                        _groupHover={{ color: 'pink.400' }}
+                        _groupHover={{ color: 'green.400' }}
                         fontWeight={500}>
                         {label}
                     </Text>
@@ -102,7 +103,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
                     justify={'flex-end'}
                     align={'center'}
                     flex={1}>
-                    <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+                    <Icon color={'green.400'} w={5} h={5} as={ChevronRightIcon} />
                 </Flex>
             </Stack>
         </Box>
@@ -176,47 +177,30 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
     {
-        label: 'Inspiration',
+        label: 'Produtos',
         children: [
             {
-                label: 'Explore Design Work',
-                subLabel: 'Trending Design to inspire you',
+                label: 'Produtos de grife',
+                subLabel: 'Conheça nossos produtos',
                 href: '#',
             },
             {
-                label: 'New & Noteworthy',
-                subLabel: 'Up-and-coming Designers',
+                label: 'Produtos top de linha',
+                subLabel: 'Conheça nossos produtos',
+                href: '#',
+            },
+            {
+                label: 'Produtos muito bons mesmo',
+                subLabel: 'Conheça nossos produtos',
                 href: '#',
             },
         ],
-    },
-    {
-        label: 'Find Work',
-        children: [
-            {
-                label: 'Job Board',
-                subLabel: 'Find your dream design job',
-                href: '#',
-            },
-            {
-                label: 'Freelance Projects',
-                subLabel: 'An exclusive list for contract work',
-                href: '#',
-            },
-        ],
-    },
-    {
-        label: 'Learn Design',
-        href: '#',
-    },
-    {
-        label: 'Hire Designers',
-        href: '#',
     },
 ]
 
 const Index = () => {
     const { isOpen, onToggle } = useDisclosure()
+    const { onCloseOpenBag, bagOpen } = useBag()
 
     return (
         <Box width={'100%'}>
@@ -264,7 +248,7 @@ const Index = () => {
                         Alexandre
                     </Button>
                     <Avatar src='https://avatars.githubusercontent.com/u/43255955?s=400&u=3b2d8e53310ac266bfcc2c998ac44ab6f9e1c721&v=4' w={30} h={30} />
-                    <Button borderRadius={'lg'}>
+                    <Button borderRadius={'lg'} onClick={() => onCloseOpenBag()}>
                         <BsFillHandbagFill />
                     </Button>
                 </Stack>

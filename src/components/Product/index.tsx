@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
 import { FiShoppingCart } from 'react-icons/fi'
+import { useBag } from "@/contexts/BagContext"
 
 interface RatingProps {
     rating: number
@@ -51,6 +52,8 @@ type IProps = {
 }
 
 const Index = ({ product }: IProps) => {
+    const { addToBag } = useBag()
+
     return (
         <Box
             maxW="sm"
@@ -89,7 +92,10 @@ const Index = ({ product }: IProps) => {
                         bg="white"
                         placement={'top'}
                         fontSize={'1.1em'}>
-                        <chakra.a href={'#'} display={'flex'}>
+                        <chakra.a cursor={'pointer'} display={'flex'}
+                            onClick={() => {
+                                addToBag(product)
+                            }}>
                             <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
                         </chakra.a>
                     </Tooltip>
